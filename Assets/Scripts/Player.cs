@@ -10,16 +10,13 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField]
     private float _fireRate = 0.01f;
-
-    private float _canFire = -1.0f;
     [SerializeField]
     private int _lives = 3;
-    private SpawnManager _spawnManager;
-
-    //variable for TrippleShotActive
-    // Serialize field for easy testing
     [SerializeField]
     private bool _TripleShotActive = false;
+
+    private float _canFire = -1.0f;
+    private SpawnManager _spawnManager;
 
     // Start is called before the first frame update
     void Start()

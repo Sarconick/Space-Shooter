@@ -6,6 +6,7 @@ public class PowerUps : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,6 @@ public class PowerUps : MonoBehaviour
     {
         if (CollisionObject.CompareTag("Player"))
         {
-            //communicate with player script
             Player player = CollisionObject.transform.GetComponent<Player>();
             if (player != null)
             {

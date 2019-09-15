@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _enemySpeed = 4.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,5 @@ public class Enemy : MonoBehaviour
             Destroy(CollisionObject.gameObject);
             Destroy(this.gameObject);
         }
-
-
     }
 }
