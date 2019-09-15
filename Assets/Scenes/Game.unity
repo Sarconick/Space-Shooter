@@ -219,7 +219,7 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
-  _TripleShotActive: 1
+  _TripleShotActive: 0
 --- !u!61 &87117982
 BoxCollider2D:
   m_ObjectHideFlags: 0

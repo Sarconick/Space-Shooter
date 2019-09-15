@@ -21,15 +21,8 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    //spawn gameobjects every 5 seconds
-    //create coroutine IEnumerator -- yield events
-    //while loop -
-
     IEnumerator SpawnRoutine()
     {
-        //while loop (infinite loop)
-          //Insantiate enemy prefab
-          //yield wait for 5 seconds
           while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
