@@ -6,12 +6,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _enemySpeed = 4.0f;
-    [SerializeField]
-    private float movementDuration = 2.0f;
-    [SerializeField]
-    private float waitBeforeMoving = 2.0f;
-    [SerializeField]
-    private bool hasArrived = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +16,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool hasArrived = false;
         float randX = Random.Range(-9.0f, 9.0f);
         float randY = Random.Range(-1.5f, 1.5f);
-        transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+        //transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+        transform.position = new Vector3(startPos,TargetPos,t); //randomize movement after enemy spawn and then go into IF check 
         if (!hasArrived)
         {
             hasArrived = true;
@@ -44,7 +40,7 @@ public class Enemy : MonoBehaviour
             Player player = CollisionObject.transform.GetComponent<Player>();
             if (player != null)
             {
-                player.Damage();
+                player.Damage();	
             }
 
             Destroy(this.gameObject);
@@ -58,6 +54,9 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator MoveToPoint(Vector3 TargetPos)
     {
+        
+    	float waitBeforeMoving = 2.0f;
+    	float movementDuration = 2.0f;
         float timer = 0.0f;
         Vector3 startPos = transform.position;
 
