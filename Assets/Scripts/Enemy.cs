@@ -40,13 +40,15 @@ public class Enemy : MonoBehaviour
        else if (CollisionObject.CompareTag("Laser"))
         {
             Destroy(CollisionObject.gameObject);
+            GameObject playerObject = GameObject.FindWithTag("Player");
+            Player player = playerObject.GetComponent<Player>();
+            player.IncreaseScore();
             Destroy(this.gameObject);
         }
     }
 
     private IEnumerator MoveToPoint(Vector3 TargetPos)
     {
-        
     	float waitBeforeMoving = 1.0f;
     	float movementDuration = 2.0f;
         float timer = 0.0f;

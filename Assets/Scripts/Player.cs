@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private GameObject _shieldVisual;
+    [SerializeField]
+    private int _score;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
         }
         _shieldVisual = GameObject.Find("Shield");
         _shieldVisual.SetActive(false);
+ 
     }
 
     // Update is called once per frame
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            shootLaser();
+            ShootLaser();
         }
     }
 
@@ -65,7 +69,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void shootLaser()
+    void ShootLaser()
     {
         _canFire = Time.time + _fireRate;
         if (Input.GetKeyDown(KeyCode.Space))
@@ -137,5 +141,14 @@ public class Player : MonoBehaviour
     {
         _shieldActive = true;
         _shieldVisual.SetActive(true);
+    }
+
+    //method to add 10 to score
+    //communicate with UI to update the score
+    public void IncreaseScore()
+    {
+        _score = _score + 10;
+        GameObject _canvas = GameObject.Find("Canvas");
+        _canvas.transform.Find("Score_Text").GetComponent<Text>().text = "Score: " + _score;
     }
 }
