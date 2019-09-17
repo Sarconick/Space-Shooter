@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //handle to Text
     [SerializeField]
     private Text _scoreText;
     // Start is called before the first frame update
@@ -17,5 +16,10 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void UpdateScore(int playerScore)
+    {
+        _scoreText.text = "Score: " + playerScore;
     }
 }
