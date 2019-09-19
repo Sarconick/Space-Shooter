@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -43,7 +44,6 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("UI Manager is Null");
         }
-
     }
 
     // Update is called once per frame
