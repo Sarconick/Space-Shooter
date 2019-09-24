@@ -6,12 +6,23 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _enemySpeed = 4.0f;
-    private bool hasArrived = false;
+    private bool _hasArrived = false;
     private Player _player;
 
+    //handle to animator component
+    private Animator _enemyDeath;
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("Player is NULL");
+        }
+        _enemyDeath = GetComponent<Animator>();
+        if (_enemyDeath == null)
+        {
+            Debug.LogError("Enemy Death animation is NULL");
+        }
     }
     // Update is called once per frame
     void Update()
@@ -19,11 +30,12 @@ public class Enemy : MonoBehaviour
 
         float randX = Random.Range(-9.0f, 9.0f);
         float randY = Random.Range(-6.5f, 6.5f);
-        if (!hasArrived)
-        {
-            hasArrived = true;
-            StartCoroutine(MoveToPoint(new Vector3(randX, randY, 0)));
-        }
+         /* if (!_hasArrived)
+         {
+             _hasArrived = true;
+             StartCoroutine(MoveToPoint(new Vector3(randX, randY, 0)));
+         } */
+        transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
 
         if (transform.position.y < -5.47f)
         {
@@ -38,10 +50,11 @@ public class Enemy : MonoBehaviour
             Player player = CollisionObject.transform.GetComponent<Player>();
             if (player != null)
             {
-                player.Damage();	
+                player.Damage();
             }
-
-            Destroy(this.gameObject);
+            _enemyDeath.SetTrigger("OnEnemyDeath");
+            _enemySpeed = 0;
+            Destroy(this.gameObject,2.5f);
         }
        else if (CollisionObject.CompareTag("Laser"))
         {
@@ -50,7 +63,9 @@ public class Enemy : MonoBehaviour
             {
                 _player.IncreaseScore(Random.Range(5,12));
             }
-            Destroy(this.gameObject);
+            _enemyDeath.SetTrigger("OnEnemyDeath");
+            _enemySpeed = 0;
+            Destroy(this.gameObject,2.5f);
         }
     }
 
@@ -72,6 +87,6 @@ public class Enemy : MonoBehaviour
         }
 
         yield return new WaitForSeconds(waitBeforeMoving);
-        hasArrived = false;
+        _hasArrived = false;
     }
 }
